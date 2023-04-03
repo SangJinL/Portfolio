@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tv_id;
+    private TextView tv_id, tv_pass;
     private Button btn_check, btn_logout;
 
     @Override
@@ -42,7 +42,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), SettingActivity.class);
+                intent.putExtra("userID", userID);
                 startActivity(intent);
+
+                finish();
             }
         });
     }

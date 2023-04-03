@@ -43,7 +43,9 @@ public class RegisterActivity extends AppCompatActivity {
                 String userName = et_name.getText().toString();
                 int userAge = Integer.parseInt(et_age.getText().toString());
 
-                Response.Listener<String> responseListenerister = new Response.Listener<String>() {
+
+
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
@@ -52,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
                             if (success) {
                                 Toast.makeText(getApplicationContext(), "회원등록에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                finish();
                             } else {
                                 Toast.makeText(getApplicationContext(), "회원등록에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                                 return;
@@ -63,12 +66,13 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 };
 
-                RegisterRequest registerRequest = new RegisterRequest(userID, userPass, userName, userAge, responseListenerister);
+                RegisterRequest registerRequest = new RegisterRequest(userID, userPass, userName, userAge, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
 
             }
-        });
 
+        });
     }
+
 }
